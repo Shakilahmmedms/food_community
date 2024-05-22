@@ -31,7 +31,7 @@ SECRET_KEY = 'django-insecure-449)0aoognjln-6f#@z^25)@h1%0x%nygy^f*@bfshe=xt7&8j
 DEBUG = True
 
 ALLOWED_HOSTS = ["*"]
-CSRF_TRUSTED_ORIGINS = ['https://smart-care.onrender.com','https://*.127.0.0.1']
+CSRF_TRUSTED_ORIGINS = ['https://food-community.onrender.com','https://*.127.0.0.1']
 
 
 # Application definition
@@ -64,6 +64,8 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'food_community.urls'
+CORS_ORIGIN_ALLOW_ALL = True
+CSRF_TRUSTED_ORIGINS = ['https://food-community.onrender.com']
 
 TEMPLATES = [
     {
@@ -87,15 +89,22 @@ WSGI_APPLICATION = 'food_community.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#       'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'NAME': env("DB_NAME"),
+#         'USER': env("DB_USER"),
+#         'PASSWORD': env("DB_PASSWORD"),
+#         'HOST': env("DB_HOST"),
+#         'PORT': env("DB_PORT"),
+#     }
+# }
+
 DATABASES = {
-    'default': {
-      'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': env("DB_NAME"),
-        'USER': env("DB_USER"),
-        'PASSWORD': env("DB_PASSWORD"),
-        'HOST': env("DB_HOST"),
-        'PORT': env("DB_PORT"),
-    }
+    'default': dj_database_url.config(
+        # Feel free to alter this value to suit your needs.
+        default='postgres://phi_books_user:2bCVreJYIrM5r5W1pEepMZamgTf0gafN@dpg-cnkb5g6n7f5s73dgnhq0-a.oregon-postgres.render.com/phi_books',
+    )
 }
 
 REST_FRAMEWORK = {
