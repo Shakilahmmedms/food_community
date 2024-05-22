@@ -30,7 +30,8 @@ SECRET_KEY = 'django-insecure-449)0aoognjln-6f#@z^25)@h1%0x%nygy^f*@bfshe=xt7&8j
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
+CSRF_TRUSTED_ORIGINS = ['https://smart-care.onrender.com','https://*.127.0.0.1']
 
 
 # Application definition
@@ -95,6 +96,10 @@ DATABASES = {
         'HOST': env("DB_HOST"),
         'PORT': env("DB_PORT"),
     }
+}
+
+REST_FRAMEWORK = {
+    'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend'],
 }
 
 # AUTH_USER_MODEL = 'chef.User'
