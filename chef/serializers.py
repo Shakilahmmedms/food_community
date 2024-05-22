@@ -1,24 +1,28 @@
 from rest_framework import serializers
 from .models import Chef,Recipe,Event, User
+from rest_framework.authtoken.models import Token
 
+
+
+    
 
 class ChefSerializers(serializers.ModelSerializer):
     class Meta:
         model = Chef
-        fields = ['id', 'name', 'bio', 'recipes']
+        fields = ['id', 'username', 'bio', 'recipes']
 
 
 class RecipeSerializers(serializers.ModelSerializer):
 
     class Meta:
         model = Recipe
-        fields = ['id', 'title', 'description', 'ingredients', 'instructions', 'creation_date', 'image_url']
+        fields = '__all__'
 
 class EventSerializers(serializers.ModelSerializer):
 
     class Meta:
         model = Event
-        fields = ['id', 'name', 'description', 'date', 'location']
+        fields = '__all__'
 
 
 

@@ -1,16 +1,16 @@
 from django.db import models
-from django.contrib.auth.models import User, AbstractUser
+from django.contrib.auth.models import AbstractUser
+from django.contrib.auth.models import User
 
 
-# Create your models here.
 
 class Chef(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='chef_profile')
-    bio = models.TextField()
+    user = models.OneToOneField(User, on_delete = models.CASCADE)
+    bio = models.TextField(blank=True)
     
-
     def __str__(self):
-        return f"{self.user.first_name} {self.user.last_name}" 
+        return self.user.username
+
 
 
 class Recipe(models.Model):
@@ -20,7 +20,7 @@ class Recipe(models.Model):
     ingredients = models.CharField(max_length=200,null=True, blank=True)
     created = models.DateField(auto_now_add=True, null=True, blank=True)
     image = models.ImageField(upload_to='chef/images/', default='default_image.jpg')
-    chef = models.ForeignKey(Chef, on_delete=models.CASCADE)
+    chef = models.ForeignKey(Chef, on_delete=models.CASCADE,related_name='recipes')
 
     def __str__(self):
         return f"{self.title} {self.chef.user.first_name}"
