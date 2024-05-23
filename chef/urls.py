@@ -3,7 +3,7 @@ from rest_framework.routers import DefaultRouter
 from .import views
 
 router = DefaultRouter()
-router.register('chefs', views.ChefViewset)
+router.register('list', views.ChefViewset)
 router.register('recipes', views.RecipeViewset)
 router.register('events', views.EventViewset)
 

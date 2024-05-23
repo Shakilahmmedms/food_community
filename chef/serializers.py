@@ -9,7 +9,7 @@ from rest_framework.authtoken.models import Token
 class ChefSerializers(serializers.ModelSerializer):
     class Meta:
         model = Chef
-        fields = ['id', 'username', 'bio', 'recipes']
+        fields = ['id', 'bio', 'recipes']
 
 
 class RecipeSerializers(serializers.ModelSerializer):

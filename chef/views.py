@@ -11,14 +11,18 @@ from rest_framework.views import APIView
 from rest_framework import generics
 from rest_framework.response import Response
 
-
+class ChefPagination(pagination.PageNumberPagination):
+    page_size = 1 # items per page
+    page_size_query_param = page_size
+    max_page_size = 100
 
 
 class ChefViewset(viewsets.ModelViewSet):
     queryset = Chef.objects.all()
     serializer_class = serializers.ChefSerializers
     filter_backends = [filters.SearchFilter]
-    search_fields = ['user__first_name', 'user__email']
+    pagination_class = ChefPagination
+    # search_fields = ['user__first_name', 'user__email']
     
 class RecipeForSpecificChef(filters.BaseFilterBackend):
     def filter_queryset(self, request, query_set, view):
